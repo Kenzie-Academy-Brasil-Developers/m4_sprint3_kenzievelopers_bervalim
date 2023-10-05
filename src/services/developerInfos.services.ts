@@ -6,18 +6,15 @@ import {
 import { client } from "../database";
 
 export const createDeveloperInformationService = async (
-  bodyRequest: developerInfoRequest,
-  id: string
+  bodyRequest: developerInfoRequest
 ) => {
-  const developerId = Number(id);
-
   const query: string = format(
-    `INSERT INTO "developerInfos" ("developerId",%I) VALUES ($1, %L)
+    `INSERT INTO "developerInfos" (%I) VALUES (%L)
    RETURNING *;`,
     Object.keys(bodyRequest),
     Object.values(bodyRequest)
   );
-  const data: developerInfoResult = await client.query(query, [developerId]);
+  const data: developerInfoResult = await client.query(query);
 
   return data.rows[0];
 };

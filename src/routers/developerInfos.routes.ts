@@ -3,4 +3,4 @@ import { createDeveloperInformationController } from "../controllers/developerIn
 
 export const developerInfoRoutes: Router = Router();
 
-developerInfoRoutes.post("/infos", createDeveloperInformationController);
+developerInfoRoutes.post("/:id/infos", createDeveloperInformationController);

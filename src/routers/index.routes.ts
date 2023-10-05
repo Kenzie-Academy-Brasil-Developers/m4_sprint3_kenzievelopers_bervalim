@@ -5,4 +5,4 @@ import { developerInfoRoutes } from "./developerInfos.routes";
 export const allRoutes: Router = Router();
 
 allRoutes.use("/developers", developerRoutes);
-allRoutes.use("/developers/:id", developerInfoRoutes);
+allRoutes.use("/developers", developerInfoRoutes);

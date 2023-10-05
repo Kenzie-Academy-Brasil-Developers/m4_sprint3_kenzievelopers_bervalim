@@ -12,10 +12,11 @@ export const createDeveloperInformationController = async (
 ): Promise<Response> => {
   const data: developerInfoRequest = {
     ...req.body,
-    id: req.params.id,
+    developerId: req.params.id,
   };
 
-  const developerInfo: developerInfoResponse =
-    await createDeveloperInformationService(req.body, req.params.id);
-  return res.status(201).json(developerInfo);
+  const newDeveloperInformation: developerInfoResponse =
+    await createDeveloperInformationService(data);
+
+  return res.status(201).json(newDeveloperInformation);
 };
