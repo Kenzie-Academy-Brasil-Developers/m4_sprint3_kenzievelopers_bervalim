@@ -7,7 +7,6 @@ export const handleErrors = (
   res: Response,
   next: NextFunction
 ): Response => {
-  // se o error for um throw new app error
   if (error instanceof AppError) {
     return res.status(error.statusCode).json(error.message);
   }
