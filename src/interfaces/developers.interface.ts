@@ -9,3 +9,5 @@ export type createDeveloperResponse = {
 export type createDeveloperBodyRequest = Omit<createDeveloperResponse, "id">;
 
 export type createDeveloperResult = QueryResult<createDeveloperResponse>;
+
+export type updateDeveloperBodyRequest = Partial<createDeveloperBodyRequest>;
