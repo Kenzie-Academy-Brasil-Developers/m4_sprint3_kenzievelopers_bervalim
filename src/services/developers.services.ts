@@ -3,6 +3,7 @@ import {
   createDeveloperBodyRequest,
   createDeveloperResponse,
   createDeveloperResult,
+  updateDeveloperBodyRequest,
 } from "../interfaces/developers.interface";
 import { client } from "../database";
 
@@ -16,7 +17,6 @@ export const createDeveloperService = async (
     Object.values(bodyRequest)
   );
   const data: createDeveloperResult = await client.query(query);
-
   return data.rows[0];
 };
 
@@ -40,4 +40,24 @@ export const getDeveloperDescriptionByIdService = async (
   );
   const data: createDeveloperResult = await client.query(query);
   return data.rows[0];
+};
+
+export const updateDeveloperInfoService = async (
+  id: string,
+  bodyUpdateRequest: updateDeveloperBodyRequest
+): Promise<createDeveloperResponse> => {
+  const query: string = format(
+    `UPDATE "developers" SET(%I) = ROW(%L) 
+  WHERE id = (%L) RETURNING *;`,
+    Object.keys(bodyUpdateRequest),
+    Object.values(bodyUpdateRequest),
+    id
+  );
+  const data: createDeveloperResult = await client.query(query);
+  return data.rows[0];
+};
+
+export const deleteDeveloperService = async (id: string): Promise<void> => {
+  const query: string = format(`DELETE FROM "developers" WHERE id = (%L);`, id);
+  await client.query(query);
 };
