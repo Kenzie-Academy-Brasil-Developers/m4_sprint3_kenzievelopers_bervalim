@@ -23,8 +23,9 @@ CREATE TABLE IF NOT EXISTS "projects" (
   "repository" VARCHAR(120) NOT NULL,
   "startDate"  DATE NOT NULL,
   "endDate" DATE,
-  "developerId" INTEGER,
+  "developerId" INTEGER NOT NULL ,
   FOREIGN KEY("developerId")
     REFERENCES "developers"("id")
     ON DELETE SET NULL
 );
+
