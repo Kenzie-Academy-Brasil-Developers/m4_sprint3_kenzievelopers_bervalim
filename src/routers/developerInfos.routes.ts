@@ -1,11 +1,15 @@
 import { Router } from "express";
 import { createDeveloperInformationController } from "../controllers/developerInfos.controllers";
-import { verifyIdDeveloperInfo } from "../middlewares/verifyIdDeveloperInfo";
+import { verifyOS } from "../middlewares/verifyOS.middlewares";
+import { verifyId } from "../middlewares/verifyId.middleware";
+import { verifyExistingInfo } from "../middlewares/verifyExistingInfo.middlewares";
 
 export const developerInfoRoutes: Router = Router();
 
 developerInfoRoutes.post(
   "/:id/infos",
-  verifyIdDeveloperInfo,
+  verifyId,
+  verifyOS,
+  verifyExistingInfo,
   createDeveloperInformationController
 );
