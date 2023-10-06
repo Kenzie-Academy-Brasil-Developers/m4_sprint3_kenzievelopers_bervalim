@@ -45,7 +45,5 @@ export const getProjectsByIdService = async (id: string) => {
 
   const data = await client.query(query, [id]);
   console.log(data);
-  if (data.rows.length > 0) {
-    return data.rows[0];
-  }
+  return data.rows[0];
 };

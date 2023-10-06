@@ -23,6 +23,5 @@ export const getProjectsByIdController = async (
   const project: createProjectResponse = await getProjectsByIdService(
     req.params.id
   );
-  console.log(req.params.id);
   return res.status(200).json(project);
 };
