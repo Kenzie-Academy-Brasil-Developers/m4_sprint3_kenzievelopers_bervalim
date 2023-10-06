@@ -9,17 +9,13 @@ export const verifyBodyIdProject = async (
   next: NextFunction
 ) => {
   const { developerId } = req.body;
-
   const query = format(
     `SELECT * FROM "developers" WHERE id=(%L);`,
     developerId
   );
-
   const data = await client.query(query);
-
   if (!data.rowCount) {
     throw new AppError("Developer not found", 404);
   }
-
   return next();
 };

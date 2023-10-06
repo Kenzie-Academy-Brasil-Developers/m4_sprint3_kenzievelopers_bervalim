@@ -8,7 +8,6 @@ import { verifyBodyIdProject } from "../middlewares/verifyBodyIdProject.middlewa
 import { verifyProjectId } from "../middlewares/verifyProjectId.middlewares";
 
 export const projectsRoutes: Router = Router();
-
 projectsRoutes.post("/", verifyBodyIdProject, createProjectController);
 projectsRoutes.get("/:id", verifyProjectId, getProjectsByIdController);
 projectsRoutes.patch(

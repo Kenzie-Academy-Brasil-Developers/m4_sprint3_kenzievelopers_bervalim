@@ -14,9 +14,7 @@ export const createDeveloperInformationController = async (
     ...req.body,
     developerId: req.params.id,
   };
-
   const newDeveloperInformation: developerInfoResponse =
     await createDeveloperInformationService(data);
-
   return res.status(201).json(newDeveloperInformation);
 };

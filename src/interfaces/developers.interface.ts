@@ -5,9 +5,6 @@ export type createDeveloperResponse = {
   name: string;
   email: string;
 };
-
 export type createDeveloperBodyRequest = Omit<createDeveloperResponse, "id">;
-
 export type createDeveloperResult = QueryResult<createDeveloperResponse>;
-
 export type updateDeveloperBodyRequest = Partial<createDeveloperBodyRequest>;

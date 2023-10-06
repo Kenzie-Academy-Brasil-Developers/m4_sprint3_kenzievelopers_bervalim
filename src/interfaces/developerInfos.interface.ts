@@ -6,7 +6,5 @@ export type developerInfoResponse = {
   preferredOS: string;
   developerId: number;
 };
-
 export type developerInfoRequest = Omit<developerInfoResponse, "id">;
-
 export type developerInfoResult = QueryResult<developerInfoResponse>;
