@@ -3,6 +3,7 @@ import {
   createProjectRequest,
   createProjectResponse,
   createProjectResult,
+  updateProjectRequest,
 } from "../interfaces/projects.interface";
 import { client } from "../database";
 
@@ -10,7 +11,6 @@ export const createProjectService = async (
   bodyRequest: createProjectRequest
 ): Promise<createProjectResponse> => {
   bodyRequest.startDate = new Date(bodyRequest.startDate);
-  // bodyRequest.endDate = new Date(bodyRequest.endDate) ?? null;
 
   if (bodyRequest.endDate) {
     bodyRequest.endDate = new Date(bodyRequest.endDate);
@@ -44,6 +44,20 @@ export const getProjectsByIdService = async (id: string) => {
   ;`;
 
   const data = await client.query(query, [id]);
-  console.log(data);
+  return data.rows[0];
+};
+
+export const updateProjectsByIdService = async (
+  id: string,
+  bodyRequest: updateProjectRequest
+): Promise<createProjectResponse> => {
+  const query: string = format(
+    `UPDATE "projects" SET (%I) = ROW (%L) 
+  WHERE "id" = (%L) RETURNING *;`,
+    Object.keys(bodyRequest),
+    Object.values(bodyRequest),
+    id
+  );
+  const data: createProjectResult = await client.query(query);
   return data.rows[0];
 };

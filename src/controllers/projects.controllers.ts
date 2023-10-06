@@ -6,6 +6,7 @@ import {
 import {
   createProjectService,
   getProjectsByIdService,
+  updateProjectsByIdService,
 } from "../services/projects.services";
 
 export const createProjectController = async (
@@ -24,4 +25,16 @@ export const getProjectsByIdController = async (
     req.params.id
   );
   return res.status(200).json(project);
+};
+
+export const updateProjectsByIdController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { id } = req.params;
+  const updatedProject: createProjectResponse = await updateProjectsByIdService(
+    id,
+    req.body
+  );
+  return res.status(200).json(updatedProject);
 };
